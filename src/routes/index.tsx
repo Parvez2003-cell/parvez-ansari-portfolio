@@ -325,7 +325,7 @@ function Portfolio() {
         </Section>
 
         {/* EDUCATION */}
-        <Section id="education" eyebrow="Education" title="Academic journey.">
+        <Section id="education" eyebrow="Education" title="Academic journey." tone="muted">
           <div className="relative">
             <div className="absolute left-3 top-2 bottom-2 w-px bg-border md:left-1/2" />
             <div className="space-y-6">
