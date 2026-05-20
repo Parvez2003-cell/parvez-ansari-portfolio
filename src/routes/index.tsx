@@ -411,9 +411,9 @@ function Portfolio() {
   );
 }
 
-function Section({ id, eyebrow, title, children }: { id: string; eyebrow: string; title: string; children: React.ReactNode }) {
+function Section({ id, eyebrow, title, children, tone = "default" }: { id: string; eyebrow: string; title: string; children: React.ReactNode; tone?: "default" | "muted" }) {
   return (
-    <section id={id} className="py-20 md:py-28 scroll-mt-24">
+    <section id={id} className={`py-20 md:py-28 scroll-mt-24 ${tone === "muted" ? "bg-muted/40 border-y" : ""}`}>
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-10 md:mb-14">
           <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{eyebrow}</div>
