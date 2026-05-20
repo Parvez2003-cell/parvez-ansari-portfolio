@@ -169,12 +169,21 @@ function Portfolio() {
                 </a>
               ))}
             </nav>
-            <a href="#contact" className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-foreground text-background px-4 py-2 text-sm font-medium hover:opacity-90 transition">
-              Let's talk <ArrowUpRight className="h-3.5 w-3.5" />
-            </a>
-            <button className="md:hidden p-2" onClick={() => setNavOpen((o) => !o)} aria-label="Menu">
-              {navOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border bg-card hover:bg-accent transition"
+              >
+                {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              </button>
+              <a href="#contact" className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-foreground text-background px-4 py-2 text-sm font-medium hover:opacity-90 transition">
+                Let's talk <ArrowUpRight className="h-3.5 w-3.5" />
+              </a>
+              <button className="md:hidden p-2" onClick={() => setNavOpen((o) => !o)} aria-label="Menu">
+                {navOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
+            </div>
           </div>
           {navOpen && (
             <div className="md:hidden mt-3 glass rounded-2xl p-4 flex flex-col gap-3">
