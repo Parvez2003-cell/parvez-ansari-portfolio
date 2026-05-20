@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   ArrowUpRight, Download, Mail, Phone, Github, Linkedin, MapPin,
-  Code2, Wrench, Brain, Sparkles, GraduationCap, Award, ExternalLink, Send, Menu, X,
+  Code2, Wrench, Brain, Sparkles, GraduationCap, Award, ExternalLink, Send, Menu, X, Sun, Moon,
 } from "lucide-react";
 import profileImg from "@/assets/profile.jpg";
 
@@ -126,6 +126,20 @@ function Portfolio() {
   const [scrolled, setScrolled] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof window === "undefined") return "light";
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark" || saved === "light") return saved;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "dark") root.classList.add("dark");
+    else root.classList.remove("dark");
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+  const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -155,12 +169,21 @@ function Portfolio() {
                 </a>
               ))}
             </nav>
-            <a href="#contact" className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-foreground text-background px-4 py-2 text-sm font-medium hover:opacity-90 transition">
-              Let's talk <ArrowUpRight className="h-3.5 w-3.5" />
-            </a>
-            <button className="md:hidden p-2" onClick={() => setNavOpen((o) => !o)} aria-label="Menu">
-              {navOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border bg-card hover:bg-accent transition"
+              >
+                {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              </button>
+              <a href="#contact" className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-foreground text-background px-4 py-2 text-sm font-medium hover:opacity-90 transition">
+                Let's talk <ArrowUpRight className="h-3.5 w-3.5" />
+              </a>
+              <button className="md:hidden p-2" onClick={() => setNavOpen((o) => !o)} aria-label="Menu">
+                {navOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
+            </div>
           </div>
           {navOpen && (
             <div className="md:hidden mt-3 glass rounded-2xl p-4 flex flex-col gap-3">
@@ -246,7 +269,7 @@ function Portfolio() {
         </Section>
 
         {/* SKILLS */}
-        <Section id="skills" eyebrow="Skills" title="Tools & technologies I work with.">
+        <Section id="skills" eyebrow="Skills" title="Tools & technologies I work with." tone="muted">
           <div className="grid sm:grid-cols-2 gap-5">
             {SKILL_GROUPS.map((g) => (
               <div key={g.title} className="rounded-3xl border bg-card p-6 hover-lift">
@@ -302,7 +325,7 @@ function Portfolio() {
         </Section>
 
         {/* EDUCATION */}
-        <Section id="education" eyebrow="Education" title="Academic journey.">
+        <Section id="education" eyebrow="Education" title="Academic journey." tone="muted">
           <div className="relative">
             <div className="absolute left-3 top-2 bottom-2 w-px bg-border md:left-1/2" />
             <div className="space-y-6">
@@ -388,9 +411,9 @@ function Portfolio() {
   );
 }
 
-function Section({ id, eyebrow, title, children }: { id: string; eyebrow: string; title: string; children: React.ReactNode }) {
+function Section({ id, eyebrow, title, children, tone = "default" }: { id: string; eyebrow: string; title: string; children: React.ReactNode; tone?: "default" | "muted" }) {
   return (
-    <section id={id} className="py-20 md:py-28 scroll-mt-24">
+    <section id={id} className={`py-20 md:py-28 scroll-mt-24 ${tone === "muted" ? "bg-muted/40 border-y" : ""}`}>
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-10 md:mb-14">
           <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{eyebrow}</div>
