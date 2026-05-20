@@ -269,7 +269,7 @@ function Portfolio() {
         </Section>
 
         {/* SKILLS */}
-        <Section id="skills" eyebrow="Skills" title="Tools & technologies I work with.">
+        <Section id="skills" eyebrow="Skills" title="Tools & technologies I work with." tone="muted">
           <div className="grid sm:grid-cols-2 gap-5">
             {SKILL_GROUPS.map((g) => (
               <div key={g.title} className="rounded-3xl border bg-card p-6 hover-lift">
