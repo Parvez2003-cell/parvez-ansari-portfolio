@@ -108,7 +108,7 @@ const PROJECTS: Project[] = [
 ];
 
 const EDUCATION = [
-  { school: "K.S Institute Of Technology", detail: "BE", year: "2022 – Present", score: "CGPA: 7.94" },
+  { school: "K.S Institute Of Technology", detail: "BE", year: "2022 – 2026", score: "CGPA: 8.32" },
   { school: "Dayananda PU College", detail: "PCMB", year: "2021", score: "94.5%" },
   { school: "Jawahar English High School", detail: "Secondary", year: "2019", score: "97.12%" },
 ];
@@ -235,8 +235,8 @@ function Portfolio() {
                   <img src={profileImg} alt="Parvez Ansari" width={768} height={768} className="w-full h-auto object-cover" />
                 </div>
                 <div className="absolute -bottom-5 -left-5 glass rounded-2xl px-4 py-3 shadow-soft">
-                  <div className="text-xs text-muted-foreground">Currently</div>
-                  <div className="text-sm font-medium">BE @ KSIT • CGPA 7.94</div>
+                  <div className="text-xs text-muted-foreground">Education</div>
+                  <div className="text-sm font-medium">B.E. in CSE @ KSIT • CGPA 8.32</div>
                 </div>
               </div>
             </div>
