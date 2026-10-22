@@ -256,7 +256,7 @@ function Portfolio() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               {[
-                "BE Student", "CGPA: 7.94", "Full Stack Dev", "Machine Learning",
+                "BE Student", "CGPA: 8.32", "Full Stack Dev", "Machine Learning",
                 "Problem Solving", "Open to Opportunities",
               ].map((f) => (
                 <div key={f} className="rounded-2xl border bg-card p-4 text-sm hover-lift">
